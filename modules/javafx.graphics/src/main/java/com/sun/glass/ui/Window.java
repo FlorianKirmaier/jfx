@@ -351,6 +351,9 @@ public abstract class Window {
         if (this.ptr != 0L) {
             _close(this.ptr);
         }
+        if(Window.focusedWindow == this) {
+            Window.focusedWindow = null;
+        }
     }
 
     private boolean isChild() {
@@ -745,6 +748,7 @@ public abstract class Window {
     }
 
     private static void setFocusedWindow(final Window window) {
+        //System.out.println("set Focused called - window: " + window);
         Window.focusedWindow = window;
     }
 
@@ -1322,7 +1326,7 @@ public abstract class Window {
 
         if (this.isFocused != focused) {
             this.isFocused = focused;
-            if (this.isFocused) {
+            if (this.isFocused && this.isVisible) {
                 setFocusedWindow(this);
             } else {
                 setFocusedWindow(null);
