@@ -101,6 +101,7 @@ void defineProperty(String name, Properties props, String defaultValue) {
  * @return the path converted to windows style, if on windows, otherwise it
  *         is the supplied path.
  */
+ TEST
 String cygpath(String path) {
     if (!IS_WINDOWS) return path;
     if (path == null || "".equals(path)) return path;
